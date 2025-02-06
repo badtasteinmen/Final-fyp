@@ -10,6 +10,8 @@ import Index from "./components/Index";
 import Theory from "./components/Theory";
 import Unit from "./components/Unit";
 import LoginPage from "./components/LoginPage"; // Import the LoginPage
+import SignUpPage from "./components/SignupPage";
+import { AuthProvider } from "./context/AuthContext";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -27,11 +29,17 @@ const TheoryStack = () => {
 const App = () => {
   return (
     <NavigationContainer>
+      <AuthProvider>
       <Stack.Navigator initialRouteName="Login">
         {/* Login Screen as the first screen */}
         <Stack.Screen
           name="Login"
           component={LoginPage}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="SignUp"
+          component={SignUpPage}
           options={{ headerShown: false }}
         />
 
@@ -69,6 +77,7 @@ const App = () => {
           )}
         </Stack.Screen>
       </Stack.Navigator>
+      </AuthProvider>
     </NavigationContainer>
   );
 };
