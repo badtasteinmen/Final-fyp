@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom right, #78fe4f, #00f2fe);
+            color: white;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            line-height: 1.8;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin: 0 0 20px;
+            animation: fadeIn 1s ease-in-out;
+            text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin: 10px 0;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .preamble {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            font-size: 1.1rem;
+            font-weight: normal;
+            max-width: 800px;
+            text-align: justify;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .preamble h2 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #ffdd57;
+            text-shadow: 0px 3px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .preamble ul {
+            margin: 10px 0 20px;
+            padding-left: 20px;
+            list-style-type: disc;
+        }
+
+        .preamble ul li {
+            margin-bottom: 10px;
+        }
+
+        /* Enhanced Back Button */
+        a {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 35px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            background: linear-gradient(45deg, #007bff, #0fb300);
+            border-radius: 50px;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            background: linear-gradient(45deg, #0fb300, #007bff);
+            transform: scale(1.1) translateY(-3px);
+            box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        a:active {
+            transform: scale(1.05);
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Home Page</h1>
+    <p>Explore the key highlights and overview of the Indian Constitution.</p>
+    
+    <div class="preamble">
+        <h2>The Preamble of the Indian Constitution</h2>
+        <p>We, the people of India, having solemnly resolved to constitute India into a Sovereign Socialist Secular Democratic Republic and to secure to all its citizens:</p>
+        <ul>
+            <li>Justice, social, economic and political;</li>
+            <li>Liberty of thought, expression, belief, faith and worship;</li>
+            <li>Equality of status and of opportunity;</li>
+            <li>Fraternity assuring the dignity of the individual and the unity and integrity of the Nation;</li>
+        </ul>
+        <p>In our constituent assembly this 26th day of November, 1949, do hereby adopt, enact and give to ourselves this Constitution.</p>
+    </div>
+    
+    <a href="index.html">⬅ Back to Welcome Page</a>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        /* General Body Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: #333;
+        }
+
+        /* Glassmorphism Container */
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            padding: 12px 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            font-size: 1rem;
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease-in-out;
+        }
+
+        input[type="email"]::placeholder,
+        input[type="password"]::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        input[type="email"]:focus,
+        input[type="password"]:focus {
+            border-color: #6a82fb;
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 10px rgba(106, 130, 251, 0.6);
+        }
+
+        button[type="submit"] {
+            padding: 15px 25px;
+            background: linear-gradient(135deg, #6a82fb, #fc5c7d);
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(106, 130, 251, 0.6);
+            transition: all 0.3s ease-in-out;
+        }
+
+        button[type="submit"]:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 25px rgba(252, 92, 125, 0.8);
+        }
+
+        button[type="submit"]:active {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(252, 92, 125, 0.5);
+        }
+
+        p {
+            font-size: 0.9rem;
+            color: #ddd;
+            margin-top: 20px;
+        }
+
+        p a {
+            color: #6a82fb;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+
+        p a:hover {
+            color: #fc5c7d;
+        }
+
+        /* Animated Glow Effect */
+        .container:hover {
+            box-shadow: 0 15px 50px rgba(255, 255, 255, 0.4);
+            transform: translateY(-5px);
+            transition: all 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome</h1>
+        <form id="loginForm" onsubmit="handleLogin(event)">
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="register.html">Register here</a></p>
+    </div>
+
+    <script>
+        function handleLogin(event) {
+            event.preventDefault(); // Prevent the form's default submission
+
+            // Simulate authentication (replace with backend logic if available)
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            if (email === "user@example.com" && password === "password123") {
+                // Save login state in sessionStorage
+                sessionStorage.setItem("isLoggedIn", "true");
+                
+                alert("Login successful!");
+                // Redirect to the welcome page
+                window.location.href = "index.html";
+            } else {
+                alert("Invalid email or password. Please try again.");
+            }
+        }
+    </script>
+</body>
+</html>

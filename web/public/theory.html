@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theory Units</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;800&display=swap');
+     
+        body {
+             margin: 0;
+             padding: 0;
+             font-family: 'Raleway', Arial, sans-serif;
+             background: linear-gradient(to bottom, #1a237e, #f48fb1);
+             color: #e8f0f7;
+             text-align: left;
+             min-height: 100vh;
+             padding: 30px;
+             box-sizing: border-box;
+             animation: fadeIn 1.5s ease-in-out;
+         }
+     
+         @keyframes fadeIn {
+             from {
+                 opacity: 0;
+                 transform: translateY(20px);
+             }
+             to {
+                 opacity: 1;
+                 transform: translateY(0);
+             }
+         }
+     
+         h1, h3 {
+             color: #ffffff;
+             margin-bottom: 10px;
+             letter-spacing: 1.3px;
+             font-weight: 800;
+             animation: slideInFromLeft 1s ease-out;
+         }
+     
+         @keyframes slideInFromLeft {
+             from {
+                 opacity: 0;
+                 transform: translateX(-50px);
+             }
+             to {
+                 opacity: 1;
+                 transform: translateX(0);
+             }
+         }
+     
+         .unit-option {
+             font-size: 1.6rem;
+             font-weight: 600;
+             color: #ffffff;
+             margin: 20px 0;
+             padding: 20px 35px;
+             background: linear-gradient(135deg, #3949ab, #f06292);
+             border: none;
+             border-radius: 15px;
+             cursor: pointer;
+             transition: all 0.3s ease;
+             text-decoration: none;
+             display: block;
+             box-shadow: 3px 6px 15px rgba(0, 0, 0, 0.2);
+             animation: popIn 0.8s ease forwards;
+         }
+     
+         @keyframes popIn {
+             0% {
+                 transform: scale(0.8);
+                 opacity: 0;
+             }
+             100% {
+                 transform: scale(1);
+                 opacity: 1;
+             }
+         }
+     
+         .unit-option:hover {
+             background: linear-gradient(135deg, #f06292, #ff94c2);
+             color: #1a237e;
+             transform: scale(1.05);
+             box-shadow: 4px 8px 18px rgba(0, 0, 0, 0.25);
+         }
+     
+         .unit-content {
+             display: none;
+             margin-top: 20px;
+             padding: 20px;
+             border: 2px solid #e8f0f7;
+             border-radius: 12px;
+             background: linear-gradient(135deg, #7e57c2, #f48fb1);
+             color: #fff;
+             opacity: 0;
+             transform: translateY(20px);
+             transition: opacity 0.6s ease-in-out, transform 0.3s ease;
+         }
+     
+         .unit-content.show {
+             display: block;
+             opacity: 1;
+             transform: translateY(0);
+         }
+     
+         button {
+             margin-top: 25px;
+             padding: 15px 35px;
+             background: linear-gradient(135deg, #d81b60, #7b1fa2);
+             color: #ffffff;
+             font-size: 1.1rem;
+             font-weight: 600;
+             border: none;
+             border-radius: 12px;
+             cursor: pointer;
+             transition: background-color 0.4s ease, transform 0.3s ease;
+             box-shadow: 3px 5px 12px rgba(0, 0, 0, 0.15);
+             animation: bounceIn 1.2s ease-out;
+         }
+     
+         @keyframes bounceIn {
+             0% {
+                 transform: scale(0.6);
+                 opacity: 0;
+             }
+             60% {
+                 transform: scale(1.1);
+                 opacity: 0.9;
+             }
+             100% {
+                 transform: scale(1);
+                 opacity: 1;
+             }
+         }
+     
+         button:hover {
+             background: linear-gradient(135deg, #ad1457, #6a1b9a);
+             transform: translateY(-3px);
+             box-shadow: 5px 8px 20px rgba(0, 0, 0, 0.2);
+         }
+     </style>
+<script>
+    function toggleUnit(unitId) {
+        const allUnits = document.querySelectorAll('.unit-content');
+        const unitLinks = document.getElementById('unit-links');
+        unitLinks.style.display = 'none';
+        allUnits.forEach(unit => unit.classList.remove('show'));
+        document.getElementById(unitId).classList.add('show');
+    }
+
+    function showUnits() {
+        document.getElementById('unit-links').style.display = 'block';
+        const allUnits = document.querySelectorAll('.unit-content');
+        allUnits.forEach(unit => unit.classList.remove('show'));
+    }
+    
+</script>
+
+</head>
+<body>
+    <h1>Select Unit</h1>
+
+    <div id="unit-links">
+        <a onclick="toggleUnit('unit1')" class="unit-option">Unit 1: The Preamble and Fundamental Concepts</a>
+        <a onclick="toggleUnit('unit2')" class="unit-option">Unit 2: Fundamental Rights, Duties, and DPSPs</a>
+        <a onclick="toggleUnit('unit3')" class="unit-option">Unit 3: Constitutional Amendments</a>
+        <a onclick="toggleUnit('unit4')" class="unit-option">Unit 4: Centre-State Relations</a>
+    </div>
+
+    <div id="unit1" class="unit-content">
+        <h4>1.1: The Preamble of the Indian Constitution</h4>
+    <p>The preamble serves as an introductory statement outlining the guiding principles, values, and objectives of the Constitution. It emphasizes justice, liberty, equality, and fraternity, reflecting the aspirations of the people of India.</p>
+    <ul>
+        <li>"We, the people of India": Symbolizes democracy and popular sovereignty.</li>
+        <li>"Sovereign": India is free and independent.</li>
+        <li>"Socialist": Ensures social and economic equality.</li>
+        <li>"Secular": Equal respect for all religions.</li>
+        <li>"Democratic": Representatives elected through free elections.</li>
+        <li>"Republic": President elected, not hereditary.</li>
+        <li>"Justice": Promotes equality and fair treatment.</li>
+        <li>"Liberty": Guarantees freedom of thought, expression, and worship.</li>
+        <li>"Equality": Ensures equal rights and opportunities for all citizens.</li>
+        <li>"Fraternity": Promotes unity and individual dignity.</li>
+    </ul>
+    <p>In summary, the Preamble of the Indian Constitution encapsulates the core ideals of justice, liberty, equality, and fraternity, which guide the nation in its democratic governance and social policies. It reflects the aspirations of the people of India and serves as the foundation for the Constitution’s values and goals.</p>
+
+    <h4>1.2: Doctrine of Basic Structure</h4>
+    <p>This judicial principle restricts Parliament from amending the Constitution’s core features, ensuring its fundamental framework remains intact. Introduced in the Kesavananda Bharati case (1973), it safeguards democracy, fundamental rights, and separation of powers.</p>
+    <p>The doctrine of basic structure is a judicial principle developed by the Supreme Court of India, which states that certain fundamental features or "basic structures" of the Indian Constitution cannot be altered or destroyed through amendments by Parliament. While the Constitution can be amended to adapt to changing needs and circumstances, this doctrine places a limitation on Parliament's power under Article 368, which provides the mechanism for amending the Constitution.</p>
+    <p>Origin of the Doctrine:</p>
+    <p>The doctrine of basic structure was first articulated in the landmark Kesavananda Bharati v. State of Kerala case in 1973. The Supreme Court, in this case, held that while Parliament has broad powers to amend the Constitution, it cannot alter its basic structure or framework. This doctrine was a response to concerns that unrestricted amendment powers could lead to the erosion of fundamental rights and the democratic structure of the Constitution.</p>
+    <p>Key Components of the Basic Structure:</p>
+    <ul>
+        <li>Supremacy of the Constitution</li>
+        <li>Republican and democratic form of government</li>
+        <li>Secularism</li>
+        <li>Separation of powers</li>
+        <li>Judicial review</li>
+        <li>Federalism</li>
+        <li>Unity and integrity of the nation</li>
+        <li>Sovereignty of India</li>
+        <li>Individual freedom and fundamental rights</li>
+    </ul>
+    <p>Importance of the Doctrine:</p>
+    <ul>
+        <li>Preserving the essence of the Constitution</li>
+        <li>Checks on parliamentary power</li>
+        <li>Upholding democracy and individual rights</li>
+    </ul>
+    <p>Key Cases Involving the Doctrine:</p>
+    <ul>
+        <li>Kesavananda Bharati v. State of Kerala (1973)</li>
+        <li>Indira Nehru Gandhi v. Raj Narain (1975)</li>
+        <li>Minerva Mills v. Union of India (1980)</li>
+    </ul>
+    <p>Conclusion: The doctrine of basic structure plays a critical role in safeguarding the core values of the Indian Constitution, ensuring that they are protected from any changes that might undermine the democratic and republican character of the nation. It provides a powerful check on legislative authority, preserving the constitutional framework for future generations.</p>
+
+    <h4>1.3: Salient Features of the Indian Constitution</h4>
+    <p>The Constitution of India is a comprehensive and detailed document that lays down the legal and institutional framework for governance in India. It is unique in many respects, reflecting the country's diverse social, cultural, and political landscape. Below are the salient features of the Indian Constitution:</p>
+    <ul>
+        <li><strong>Lengthiest Written Constitution:</strong> The Constitution of India is the longest written constitution in the world. It originally had 395 articles, 22 parts, and 8 schedules. Over time, through various amendments, it has expanded to include more articles and schedules.</li>
+        <li><strong>Sovereign, Socialist, Secular, Democratic, Republic:</strong> The Preamble declares India to be a sovereign, socialist, secular, democratic republic, signifying that India is free from external control, aims for equality, and treats all religions equally.</li>
+        <li><strong>Federal System with Unitary Bias:</strong> India has a federal structure with powers divided between the Union and State governments, though the Union holds more power, especially during emergencies.</li>
+        <li><strong>Parliamentary Form of Government:</strong> India follows a parliamentary system of government where the Prime Minister and Council of Ministers are responsible to the Lok Sabha (House of the People).</li>
+        <li><strong>Fundamental Rights:</strong> The Constitution guarantees several fundamental rights, such as equality, freedom of expression, and religious freedom.</li>
+        <li><strong>Directive Principles of State Policy (DPSP):</strong> The DPSPs are guidelines for the state to follow in order to promote social welfare, though they are not enforceable by law.</li>
+        <li><strong>Fundamental Duties:</strong> Added in 1976, these duties highlight moral obligations for citizens, including respecting the Constitution and protecting the environment.</li>
+        <li><strong>Independent Judiciary and Judicial Review:</strong> The judiciary is independent, with powers to review laws that are unconstitutional, ensuring the protection of citizens' rights.</li>
+        <li><strong>Single Citizenship:</strong> Every Indian citizen enjoys the same rights across the country, promoting national unity.</li>
+        <li><strong>Secular State:</strong> The government treats all religions equally and guarantees the right to practice any religion.</li>
+        <li><strong>Universal Adult Suffrage:</strong> All citizens above the age of 18 can vote, regardless of caste, gender, or religion.</li>
+        <li><strong>Bicameral Legislature:</strong> The Parliament consists of the Lok Sabha (lower house) and Rajya Sabha (upper house).</li>
+        <li><strong>Emergency Provisions:</strong> The Constitution allows for emergencies, such as national, state, and financial emergencies, providing special powers to the government.</li>
+        <li><strong>Amendment Procedure:</strong> The Constitution can be amended through Article 368, with certain provisions being immutable, as per the basic structure doctrine.</li>
+        <li><strong>Provisions for Minorities and Weaker Sections:</strong> Special provisions exist for the protection and upliftment of minorities and weaker sections, including reservations.</li>
+        <li><strong>Official Language:</strong> Hindi is the official language, but English is also used for official purposes, and states may have their own official languages.</li>
+    </ul>
+    <p>Conclusion: These salient features reflect the adaptability and comprehensiveness of the Indian Constitution, ensuring a balance between individual rights and national unity, while safeguarding democratic values and justice.</p>
+
+    <h4>1.4: Key Characteristics of the Indian Constitution</h4>
+    <p>The Constitution of India has several defining characteristics that make it a unique and robust legal document. These characteristics ensure that it not only provides a framework for governance but also protects the rights and freedoms of its citizens.</p>
+    <ul>
+        <li><strong>Written Constitution:</strong> The Constitution is a written document, clearly outlining the powers and duties of the government and citizens.</li>
+        <li><strong>Lengthiest Constitution:</strong> The Constitution is the longest written Constitution, originally with 395 articles and 8 schedules.</li>
+        <li><strong>Sovereign, Socialist, Secular, Democratic Republic:</strong> The Preamble declares India as a sovereign, socialist, secular, democratic republic.</li>
+        <li><strong>Federal Structure with Unitary Bias:</strong> The federal system with a unitary tilt during emergencies.</li>
+        <li><strong>Parliamentary System of Government:</strong> The real executive power is vested in the Council of Ministers headed by the Prime Minister.</li>
+        <li><strong>Fundamental Rights:</strong> The Constitution guarantees a set of fundamental rights to protect civil liberties.</li>
+        <li><strong>Directive Principles of State Policy (DPSP):</strong> Provides guidelines for the state to follow in the promotion of welfare and equality.</li>
+        <li><strong>Fundamental Duties:</strong> Moral obligations for citizens to respect national symbols, protect the environment, and uphold the unity of India.</li>
+        <li><strong>Independent Judiciary:</strong> An independent judiciary that has judicial review powers to protect the Constitution.</li>
+        <li><strong>Single Citizenship:</strong> India practices the principle of single citizenship, ensuring equal rights and duties for all citizens.</li>
+        <li><strong>Secularism:</strong> The state does not favor any religion and ensures religious freedom.</li>
+        <li><strong>Universal Adult Suffrage:</strong> Every citizen over the age of 18 has the right to vote.</li>
+        <li><strong>Bicameral Legislature:</strong> The Parliament consists of two houses – Lok Sabha and Rajya Sabha.</li>
+        <li><strong>Emergency Provisions:</strong> Emergency provisions allow the central government to assume wide powers during national or state crises.</li>
+        <li><strong>Amendability:</strong> The Constitution can be amended to meet changing needs, but the basic structure remains intact.</li>
+        <li><strong>Special Provisions for Certain States:</strong> Provisions for special treatment for states like Jammu and Kashmir (Article 370, now abrogated).</li>
+        <li><strong>Provisions for Minority Protection:</strong> Provisions to protect the rights of minorities, scheduled castes, tribes, and other backward classes.</li>
+        <li><strong>Official Language:</strong> Hindi is the official language, but English is also used for official purposes, with states having the freedom to use their own languages.</li>
+    </ul>
+    <p>Conclusion: The characteristics of the Indian Constitution reflect its democratic, federal, and secular nature while ensuring flexibility and rigidity in governance, catering to the diverse socio-political landscape of India.</p>
+    </div>
+
+
+    <div id="unit2" class="unit-content">
+    <h3>Unit 2: Fundamental Rights, Duties, and DPSPs</h3>
+   
+    <h4>2.1: Fundamental Rights</h4>
+    <p>The Fundamental Rights guaranteed by the Constitution of India are enshrined in Part III (Articles 12 to 35). These rights are essential for the overall development of individuals and are justiciable, meaning that citizens can approach the courts for their enforcement. Here is the list of Fundamental Rights:</p>
+    <ul>
+        <li><strong>Right to Equality (Articles 14-18):</strong>
+            <ul>
+                <li>Article 14: Equality before the law and equal protection of the laws.</li>
+                <li>Article 15: Prohibition of discrimination on grounds of religion, race, caste, sex, or place of birth.</li>
+                <li>Article 16: Equality of opportunity in matters of public employment.</li>
+                <li>Article 17: Abolition of untouchability.</li>
+                <li>Article 18: Abolition of titles, except military and academic distinctions.</li>
+            </ul>
+        </li>
+        <li><strong>Right to Freedom (Articles 19-22):</strong>
+            <ul>
+                <li>Article 19: Protection of six fundamental freedoms:
+                    <ul>
+                        <li>Freedom of speech and expression.</li>
+                        <li>Freedom to assemble peaceably and without arms.</li>
+                        <li>Freedom to form associations or unions.</li>
+                        <li>Freedom to move freely throughout the territory of India.</li>
+                        <li>Freedom to reside and settle in any part of India.</li>
+                        <li>Freedom to practice any profession, or to carry on any occupation, trade, or business.</li>
+                    </ul>
+                </li>
+                <li>Article 20: Protection in respect of conviction for offenses (no ex post facto law, no double jeopardy, and protection against self-incrimination).</li>
+                <li>Article 21: Protection of life and personal liberty.</li>
+                <li>Article 21A: Right to education (free and compulsory education for children between the ages of 6 and 14 years).</li>
+                <li>Article 22: Protection against arrest and detention in certain cases, including rights of the arrested persons.</li>
+            </ul>
+        </li>
+        <li><strong>Right against Exploitation (Articles 23-24):</strong>
+            <ul>
+                <li>Article 23: Prohibition of human trafficking and forced labor.</li>
+                <li>Article 24: Prohibition of child labor in factories, mines, or hazardous employment for children below 14 years.</li>
+            </ul>
+        </li>
+        <li><strong>Right to Freedom of Religion (Articles 25-28):</strong>
+            <ul>
+                <li>Article 25: Freedom of conscience and the right to freely profess, practice, and propagate religion.</li>
+                <li>Article 26: Freedom to manage religious affairs.</li>
+                <li>Article 27: Freedom from payment of taxes for the promotion of any religion.</li>
+                <li>Article 28: Freedom from attending religious instruction or worship in certain educational institutions.</li>
+            </ul>
+        </li>
+        <li><strong>Cultural and Educational Rights (Articles 29-30):</strong>
+            <ul>
+                <li>Article 29: Protection of interests of minorities to conserve their culture, language, and script.</li>
+                <li>Article 30: Right of minorities to establish and administer educational institutions.</li>
+            </ul>
+        </li>
+        <li><strong>Right to Constitutional Remedies (Article 32):</strong>
+            <ul>
+                <li>Article 32: Right to move the Supreme Court or High Courts for the enforcement of fundamental rights. It is also known as the "Right to Constitutional Remedies" or the "heart and soul of the Constitution," as termed by Dr. B.R. Ambedkar.</li>
+                <li>The courts can issue writs like habeas corpus, mandamus, prohibition, quo warranto, and certiorari to enforce these rights.</li>
+            </ul>
+        </li>
+    </ul>
+    <p><strong>Conclusion:</strong> These Fundamental Rights are crucial in safeguarding the liberties of individuals in India, ensuring equality, freedom, protection from exploitation, and the promotion of cultural diversity. They are enforceable by the courts, and their violation can be challenged in court through Article 32 or Article 226 (in High Courts).</p>
+
+    <h4>2.2: Fundamental Duties and Directive Principles</h4>
+    <p>The Fundamental Duties of Indian citizens are listed in Article 51A under Part IV-A of the Constitution. These were added by the 42nd Amendment Act, 1976, to promote a sense of moral obligation and civic responsibility among citizens. While these duties are not legally enforceable, they are considered essential for the proper functioning of society.</p>
+    <p><strong>General Fundamental Duties (Article 51A):</strong></p>
+    <ul>
+        <li>To abide by the Constitution and respect its ideals and institutions, the National Flag, and the National Anthem.</li>
+        <li>To cherish and follow the noble ideals that inspired the national struggle for freedom.</li>
+        <li>To uphold and protect the sovereignty, unity, and integrity of India.</li>
+        <li>To defend the country and render national service when called upon to do so.</li>
+        <li>To promote harmony and the spirit of common brotherhood among all the people of India, transcending religious, linguistic, regional, or sectional diversities; and to renounce practices derogatory to the dignity of women.</li>
+        <li>To value and preserve the rich heritage of India’s culture.</li>
+        <li>To protect and improve the natural environment, including forests, lakes, rivers, and wildlife, and to have compassion for living creatures.</li>
+        <li>To develop the scientific temper, humanism, and the spirit of inquiry and reform.</li>
+        <li>To safeguard public property and to abjure violence.</li>
+        <li>To strive toward excellence in all spheres of individual and collective activity, so that the nation constantly rises to higher levels of endeavor and achievement.</li>
+        <li>To provide opportunities for education to children between the ages of six and fourteen (for parents or guardians).</li>
+    </ul>
+
+    <p><strong>Fundamental Duties in Particular Related to the Engineering Field:</strong></p>
+    <ul>
+        <li>To uphold and protect the sovereignty, unity, and integrity of India:
+            <ul>
+                <li>Engineers working in sectors like defense, infrastructure, and communication systems must ensure their work contributes to national security and integrity.</li>
+                <li>For example, cybersecurity engineers should safeguard national digital infrastructure from threats.</li>
+            </ul>
+        </li>
+        <li>To promote harmony and the spirit of common brotherhood:
+            <ul>
+                <li>Engineers should ensure that their innovations and solutions are inclusive and beneficial to all sections of society, regardless of region, religion, or community.</li>
+                <li>In the workplace, engineers should foster an environment of cooperation and teamwork.</li>
+            </ul>
+        </li>
+        <li>To develop the scientific temper, humanism, and the spirit of inquiry and reform:
+            <ul>
+                <li>This is particularly relevant for engineers. They should be committed to scientific innovation, critical thinking, and problem-solving, applying the scientific temper to improve society.</li>
+                <li>Engineers should also uphold ethical standards in their work, avoiding actions that could harm people or the environment.</li>
+            </ul>
+        </li>
+        <li>To safeguard public property:
+            <ul>
+                <li>Engineers should ensure that the infrastructure, resources, and public property they work on or with are handled responsibly and efficiently, minimizing waste and damage.</li>
+                <li>This includes avoiding the misuse of public resources, protecting critical infrastructure like roads, bridges, and public utilities.</li>
+            </ul>
+        </li>
+        <li>To protect and improve the natural environment:
+            <ul>
+                <li>Environmental engineers, civil engineers, and others should ensure their projects minimize environmental impact, promote sustainability, and contribute to a cleaner environment.</li>
+                <li>This includes using eco-friendly materials, reducing pollution, and adhering to environmental regulations in construction and design.</li>
+            </ul>
+        </li>
+        <li>To strive toward excellence in all spheres of individual and collective activity:
+            <ul>
+                <li>Engineers are expected to pursue excellence in their fields by staying updated with the latest technological developments, adopting best practices, and continuously improving their knowledge and skills.</li>
+                <li>Engineers should aim to innovate and create solutions that benefit society as a whole, pushing boundaries in technology and infrastructure development.</li>
+            </ul>
+        </li>
+        <li>To abjure violence:
+            <ul>
+                <li>Engineers should ensure that their innovations or inventions are used for peaceful purposes and do not contribute to harm or destruction, promoting peaceful applications of technology.</li>
+            </ul>
+        </li>
+    </ul>
+    <p><strong>Conclusion:</strong> While the Fundamental Duties apply to all citizens, engineers have specific responsibilities to uphold these duties through their profession. Their work has a direct impact on the development, sustainability, and security of the nation, and by adhering to these duties, they contribute positively to society and the advancement of the country.</p>
+
+    <h4>2.3: Directive Principles of State Policy (DPSPs)</h4>
+    <p>The Directive Principles of State Policy (DPSP), outlined in Part IV of the Indian Constitution, are guidelines for the state to follow in order to achieve social and economic justice. Although they are non-justiciable (i.e., they cannot be enforced in a court of law), they are fundamental in the governance of the country. Fundamental Rights (Part III), on the other hand, are enforceable in courts, and any violation of these rights can be challenged.</p>
+    <p><strong>However, there have been certain situations where the Directive Principles have prevailed over Fundamental Rights through amendments and judicial interpretations. Below are the situations where DPSP have prevailed over Fundamental Rights:</strong></p>
+    <ul>
+        <li><strong>Amendments to the Constitution (42nd Amendment Act, 1976):</strong>
+            <ul>
+                <li>The 42nd Amendment was a significant development in the context of the relationship between DPSPs and Fundamental Rights. It amended Article 31C, which originally provided that laws enacted to implement Article 39(b) and 39(c) (related to the equitable distribution of resources and the prevention of concentration of wealth) cannot be challenged on the grounds of violating Fundamental Rights under Article 14 (Right to Equality) and Article 19 (Right to Freedom).</li>
+                <li>The 42nd Amendment expanded the scope of Article 31C to cover all Directive Principles. However, this extension was later invalidated by the Supreme Court in the Minerva Mills case (1980), which held that the basic structure of the Constitution, including the balance between Fundamental Rights and DPSP, cannot be altered.</li>
+            </ul>
+        </li>
+        <li><strong>Judicial Interpretations:</strong>
+            <ul>
+                <li><strong>Kesavananda Bharati Case (1973):</strong> In this landmark case, the Supreme Court laid down the Basic Structure Doctrine, stating that the basic structure of the Constitution cannot be amended, even by Parliament. However, it also acknowledged that there should be a balance between Fundamental Rights and DPSPs. This case laid the foundation for later rulings that allowed DPSPs to have a more significant role in certain situations, especially where social welfare is involved.</li>
+                <li><strong>Minerva Mills Case (1980):</strong> In this case, the Supreme Court struck down the part of Article 31C introduced by the 42nd Amendment, which had extended protection to all laws implementing any DPSP against challenges based on the violation of Fundamental Rights. The Court ruled that while laws to implement Article 39(b) and 39(c) could override Articles 14 and 19, the rest of the Directive Principles could not override Fundamental Rights. It emphasized that the harmony and balance between Fundamental Rights and DPSPs are part of the basic structure of the Constitution.</li>
+            </ul>
+        </li>
+        <li><strong>Social Welfare Legislation and DPSP:</strong>
+            <ul>
+                <li>In cases where the state enacts legislation for social and economic welfare based on the DPSPs, the Supreme Court has sometimes upheld these laws, even when they infringe upon Fundamental Rights, especially those under Article 19 (Right to Freedom). For example:
+                    <ul>
+                        <li>Land Reforms and Zamindari Abolition Acts: These laws, which were aimed at redistributing land and ensuring social justice, were enacted based on DPSPs like Article 39(b) and 39(c). Although they affected the Fundamental Right to Property (Article 31), they were upheld by the courts in many cases, such as the Golak Nath case and later Kesavananda Bharati case.</li>
+                        <li>Right to Education (Article 21A): The 86th Amendment to the Constitution inserted Article 21A, making the right to education a Fundamental Right. This right is aligned with the Directive Principle under Article 45, which directs the state to provide free and compulsory education for children. Here, a DPSP was essentially elevated to the status of a Fundamental Right, reflecting the state's commitment to social welfare.</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li><strong>Article 31C and Specific DPSPs (Article 39(b) and 39(c)):</strong>
+            <ul>
+                <li>Article 31C, as it stands today, ensures that any law enacted to give effect to Article 39(b) and 39(c) cannot be challenged on the grounds of violating Article 14 (Right to Equality) or Article 19 (Right to Freedom). This effectively means that laws aimed at ensuring equitable distribution of resources or preventing concentration of wealth can override these Fundamental Rights.</li>
+                <li><strong>Key Examples:</strong>
+                    <ul>
+                        <li>Reservation Policies: Many of the laws providing reservation in education and employment for Scheduled Castes (SCs), Scheduled Tribes (STs), and Other Backward Classes (OBCs) are based on the Directive Principles (like Article 46). These laws, while sometimes challenged as violating the Right to Equality (Article 14), have been upheld by the courts as a necessary means to achieve social justice.</li>
+                        <li>Environmental Protection: Laws and policies aimed at protecting the environment (as per Article 48A, a DPSP) can sometimes place restrictions on the Right to Freedom of Trade (Article 19), especially in industries that cause pollution. Courts have often upheld such restrictions in the broader interest of environmental protection.</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <p><strong>Conclusion:</strong> In general, while Fundamental Rights are enforceable and hold a high place in the constitutional scheme, Directive Principles have, in specific circumstances, prevailed or been given priority, particularly when they aim to promote social and economic justice or protect public welfare. The judiciary has balanced these two parts of the Constitution by emphasizing that neither should be seen in isolation, and both are meant to complement each other for the overall development of the country.</p>
+</div>
+
+
+
+
+       <div id="unit3" class="unit-content">
+    <h3>Unit 3: Constitutional Amendments</h3>
+   
+    <h4>3.1: Constitutional Amendments</h4>
+    <p>India's Constitution has been amended several times to address evolving political, social, and economic needs. As of now, there are 105 constitutional amendments. Below is an outline of some of the most significant constitutional amendments:</p>
+    <ul>
+        <li><strong>First Amendment Act, 1951:</strong> Introduced restrictions on freedom of speech and expression. Empowered the state to make special provisions for the advancement of socially and economically backward classes.</li>
+        <li><strong>Seventh Amendment Act, 1956:</strong> Reorganized the states on a linguistic basis. Introduced changes in the structure of states and union territories.</li>
+        <li><strong>Ninth Amendment Act, 1960:</strong> Facilitated the transfer of certain territories to Pakistan under the 1958 agreement.</li>
+        <li><strong>Tenth Amendment Act, 1961:</strong> Incorporated Dadra and Nagar Haveli into the Union of India.</li>
+        <li><strong>Fourteenth Amendment Act, 1962:</strong> Included Puducherry (Pondicherry) as a Union Territory of India.</li>
+        <li><strong>Twenty-Fourth Amendment Act, 1971:</strong> Affirmed the power of Parliament to amend any part of the Constitution, including Fundamental Rights. Ensured that Article 368 allows amendments to the Constitution.</li>
+        <li><strong>Twenty-Fifth Amendment Act, 1971:</strong> Curtailed the right to property as a fundamental right by amending Article 31.</li>
+        <li><strong>Thirty-First Amendment Act, 1973:</strong> Increased the number of seats in the Lok Sabha from 525 to 545.</li>
+        <li><strong>Thirty-Ninth Amendment Act, 1975:</strong> Placed certain election disputes involving the President, Vice-President, Prime Minister, and Speaker of the Lok Sabha beyond the jurisdiction of the judiciary.</li>
+        <li><strong>Forty-Second Amendment Act, 1976 (also called the Mini-Constitution):</strong> Added the terms “Socialist” and “Secular” to the Preamble. Increased the power of the central government and curtailed the powers of the judiciary. Made Directive Principles of State Policy (DPSP) superior to Fundamental Rights in certain cases. Added Fundamental Duties under Article 51A.</li>
+        <li><strong>Forty-Fourth Amendment Act, 1978:</strong> Restored civil liberties and curtailed some powers of the executive that were expanded during the Emergency. Right to Property was removed from Fundamental Rights and made a legal right under Article 300A. Reaffirmed judicial review of laws.</li>
+        <li><strong>Fifty-Second Amendment Act, 1985 (Anti-Defection Law):</strong> Introduced the Anti-Defection Law under Tenth Schedule, disqualifying MPs and MLAs who defect from one party to another.</li>
+        <li><strong>Sixty-First Amendment Act, 1989:</strong> Reduced the voting age from 21 to 18 years for both Lok Sabha and state legislative assembly elections.</li>
+        <li><strong>Seventy-Third Amendment Act, 1992 (Panchayati Raj):</strong> Gave constitutional status to Panchayati Raj Institutions. Introduced Part IX of the Constitution, containing provisions related to Panchayats. Reserved seats for SCs, STs, and women in local government bodies.</li>
+        <li><strong>Seventy-Fourth Amendment Act, 1992 (Municipalities):</strong> Gave constitutional status to Urban Local Bodies (Municipalities). Introduced Part IXA to the Constitution, focusing on the governance of cities and towns.</li>
+        <li><strong>Eighty-Sixth Amendment Act, 2002 (Right to Education):</strong> Made education a fundamental right under Article 21A, providing free and compulsory education to children between the ages of 6 and 14.</li>
+        <li><strong>Ninety-First Amendment Act, 2003:</strong> Limited the size of the Council of Ministers in the central and state governments to 15% of the total members of the Lok Sabha or the Legislative Assembly.</li>
+        <li><strong>Ninety-Ninth Amendment Act, 2014 (NJAC):</strong> Established the National Judicial Appointments Commission (NJAC) for appointing judges to the Supreme Court and High Courts. Later struck down by the Supreme Court as unconstitutional, reaffirming the collegium system.</li>
+        <li><strong>One Hundredth Amendment Act, 2015:</strong> Facilitated the exchange of territories between India and Bangladesh to settle border disputes.</li>
+        <li><strong>One Hundred and First Amendment Act, 2016 (GST):</strong> Introduced the Goods and Services Tax (GST), a unified indirect tax system replacing multiple indirect taxes. Created the GST Council for regulating and managing GST.</li>
+        <li><strong>One Hundred and Third Amendment Act, 2019 (EWS Quota):</strong> Introduced 10% reservation for Economically Weaker Sections (EWS) in educational institutions and public employment.</li>
+        <li><strong>One Hundred and Fourth Amendment Act, 2020:</strong> Extended the reservation of seats for Scheduled Castes (SCs) and Scheduled Tribes (STs) in the Lok Sabha and state assemblies for another 10 years. Ended the reserved seats for Anglo-Indians in the Lok Sabha and state legislative assemblies.</li>
+        <li><strong>One Hundred and Fifth Amendment Act, 2021:</strong> Restored the power of state governments to identify and notify Socially and Educationally Backward Classes (SEBCs), after it was diluted by the Supreme Court in the Maratha reservation case.</li>
+    </ul>
+
+    <h4>3.2: Centre-State Relations</h4>
+    <p>The Centre-State relationship in India refers to the distribution of powers, functions, and responsibilities between the Union (Central) Government and the State Governments, as outlined in the Constitution of India. This relationship is crucial in a federal system like India's, where both the center and the states have their own spheres of authority. The Centre-State relations can be broadly categorized into three main areas:</p>
+   
+    <h5>1. Legislative Relations (Articles 245-255)</h5>
+    <p>These define how legislative powers are divided between the Centre and the states. Key elements include:</p>
+    <ul>
+        <li><strong>Three Lists under the Seventh Schedule:</strong> Union List, State List, and Concurrent List.</li>
+        <li><strong>Residuary Powers:</strong> The Parliament has the exclusive authority to legislate on matters not mentioned in any of the three lists.</li>
+        <li><strong>Repugnancy Doctrine:</strong> If there is a conflict between central law and state law on a matter in the Concurrent List, the central law prevails unless the state law has received Presidential assent.</li>
+    </ul>
+
+    <h5>2. Administrative Relations (Articles 256-263)</h5>
+    <p>These define how administrative powers and responsibilities are distributed between the Centre and the states. Key elements include:</p>
+    <ul>
+        <li><strong>Distribution of Executive Power:</strong> The executive power of the Union extends to matters on which Parliament can legislate, and the executive power of the States extends to matters on which State Legislatures can legislate.</li>
+        <li><strong>Control of the Union over States:</strong> The Centre can give directions to the states in the case of infrastructure, protection, and ensuring compliance with laws.</li>
+        <li><strong>All-India Services:</strong> Uniformity in administrative standards through services like IAS, IPS, and IFS.</li>
+    </ul>
+
+    <h5>3. Financial Relations (Articles 268-293)</h5>
+    <p>These determine the financial distribution and sharing of resources between the Centre and states. Key elements include:</p>
+    <ul>
+        <li><strong>Division of Taxes:</strong> Union Taxes, State Taxes, and Shared Taxes.</li>
+        <li><strong>Grants-in-Aid:</strong> Financial aid provided by the Centre to states, especially those with limited resources.</li>
+        <li><strong>Finance Commission:</strong> Constituted to recommend how tax revenues should be shared between the Centre and the states.</li>
+    </ul>
+
+    <h5>4. Other Relations</h5>
+    <p>Additional provisions, such as Emergency Provisions and Zonal Councils, further shape Centre-State Relations.</p>
+
+    <h4>3.3: Purposes of Constitutional Amendments</h4>
+    <p>Constitutional amendments in India serve several key purposes, including:</p>
+    <ul>
+        <li><strong>Strengthening Democracy and Governance:</strong> Many amendments have aimed to strengthen the democratic framework, governance structures, and the relationship between different branches of government.</li>
+        <li><strong>Enhancing Social Justice and Equality:</strong> Amendments have promoted social equality by addressing historical injustices and ensuring opportunities for underprivileged sections of society.</li>
+        <li><strong>Ensuring Cooperative Federalism:</strong> Amendments have improved the functioning of India’s federal structure and the relationship between the Centre and the States.</li>
+        <li><strong>Economic Reforms and Redistribution:</strong> Amendments focused on economic restructuring, resource allocation, and promoting social welfare.</li>
+        <li><strong>Judicial and Legislative Reforms:</strong> Amendments aimed at addressing issues related to judicial independence, accountability, and the relationship between the legislature and judiciary.</li>
+        <li><strong>Addressing National Security and Emergency Situations:</strong> Amendments responded to security and emergency needs to ensure the integrity and stability of the nation.</li>
+        <li><strong>Promoting Inclusion and Representation:</strong> Amendments enhanced representation of historically marginalized groups and ensured their inclusion in the political process.</li>
+    </ul>
+
+    <p>These amendments reflect India’s efforts to balance democracy, social justice, federalism, economic development, and national security.</p>
+</div>
+
+     <div id="unit4" class="unit-content">
+    <h3>Unit 4: Centre-State Relations</h3>
+    <h4>4.1: Electoral Rights</h4>
+    <p>Electoral rights are fundamental to the functioning of any democratic system, as they ensure that citizens have the power to participate in choosing their representatives and shaping the policies of their government. In India, electoral rights are an integral part of the democratic process and are protected by the Constitution. These rights not only empower individuals but also play a crucial role in maintaining the legitimacy, accountability, and inclusiveness of the political system.</p>
+   
+    <h5>Importance of Electoral Rights</h5>
+    <ul>
+        <li><strong>Foundation of Democracy:</strong> Electoral rights form the core of democratic governance. They give citizens the power to elect their representatives, thus ensuring that the government reflects the will of the people. Through elections, citizens express their sovereignty, reinforcing the concept of a government of the people, by the people, and for the people.</li>
+        <li><strong>Political Participation:</strong> Voting is the primary means by which citizens participate in the political process. It enables individuals to choose leaders who will represent their interests and work on policies that reflect the people's needs. Political participation fosters a sense of belonging, responsibility, and involvement in public affairs.</li>
+        <li><strong>Accountability of Government:</strong> Electoral rights ensure that elected officials remain accountable to the people. Since elections are held periodically, representatives must seek the approval of the electorate to continue in office. This process holds politicians accountable for their actions and encourages them to fulfill their promises. If they fail to perform, voters have the right to remove them from office through elections.</li>
+        <li><strong>Safeguard of Fundamental Rights:</strong> Electoral rights serve as a safeguard for fundamental rights by ensuring that the government remains answerable to the people. An elected government is more likely to respect and protect the civil liberties and freedoms of its citizens. If the government violates these rights, voters can replace it in the next election.</li>
+        <li><strong>Expression of Public Will:</strong> Elections provide a structured way for the public to express its political will. Through voting, citizens influence the policies, laws, and direction of governance. It ensures that majority opinion prevails while safeguarding the rights of minorities. Electoral rights ensure that every vote counts, promoting a system where decisions are made based on collective public opinion.</li>
+        <li><strong>Peaceful Change of Government:</strong> Elections offer a peaceful means of transferring power. In a democratic system, changes in government happen through the ballot rather than through violence or revolution. Electoral rights ensure that political transitions are smooth, stable, and legitimate, preventing social unrest and political instability.</li>
+        <li><strong>Representation of Diverse Groups:</strong> Electoral rights ensure the representation of diverse groups within society, including minorities, marginalized communities, and underrepresented groups. This is crucial in India, where the population is highly diverse in terms of caste, religion, language, and culture. Electoral systems like reserved seats for Scheduled Castes (SCs) and Scheduled Tribes (STs) in legislatures ensure that marginalized groups have a voice in the democratic process.</li>
+        <li><strong>Promotion of Political Awareness:</strong> The exercise of electoral rights encourages citizens to stay informed about political issues, candidates, and government policies. This promotes a more politically aware and educated electorate, which is essential for the health of democracy. Elections often trigger public debates and discussions, raising awareness about social, economic, and political matters.</li>
+        <li><strong>Strengthening Rule of Law:</strong> Electoral rights reinforce the rule of law by ensuring that the government is formed through a constitutional and legal process. It legitimizes the authority of the government and ensures that governance is based on the consent of the governed, rather than on arbitrary or authoritarian control. The regular exercise of electoral rights ensures that democratic institutions are strong and operate within the framework of the law.</li>
+        <li><strong>Equality and Non-Discrimination:</strong> Electoral rights promote political equality, ensuring that every citizen, regardless of their socio-economic background, has an equal say in the governance of the country. In India, where universal adult suffrage grants voting rights to all citizens over 18 years, electoral rights promote equality and inclusiveness. Each vote carries the same weight, irrespective of the voter’s caste, religion, gender, or financial status.</li>
+        <li><strong>Empowerment of Citizens:</strong> Voting gives citizens a sense of empowerment as they directly influence the political process. This empowerment is essential in developing a civic-minded society where citizens are aware of their rights and responsibilities. The act of voting reinforces the idea that the government is answerable to the people and must work in their interests.</li>
+        <li><strong>Protection Against Authoritarianism:</strong> Electoral rights act as a bulwark against authoritarianism by ensuring that political power is periodically subject to the will of the people. They provide a mechanism for removing leaders who abuse power or fail to govern effectively, thus preventing the rise of autocratic rule. In democracies like India, the right to vote serves as a critical check on the concentration of power in a single authority.</li>
+    </ul>
+
+    <h5>Electoral Rights in India</h5>
+    <ul>
+        <li><strong>Right to Vote (Article 326):</strong> The Constitution of India guarantees the right to vote to every citizen aged 18 and above through the system of universal adult suffrage. This ensures that every eligible citizen, regardless of caste, religion, gender, or economic status, can participate in elections and have a say in choosing the government.</li>
+        <li><strong>Right to Contest Elections:</strong> Citizens have the right to contest elections for legislative bodies, subject to certain qualifications (such as age, citizenship, and absence of disqualifications). This ensures that anyone with the necessary qualifications can represent the people and work toward the welfare of society.</li>
+        <li><strong>Right to Free and Fair Elections:</strong> The Election Commission of India is an independent body responsible for ensuring free and fair elections. It safeguards electoral rights by maintaining an impartial and transparent election process, ensuring that voters can exercise their rights without coercion, fear, or fraud.</li>
+        <li><strong>Protection of Electoral Rights:</strong> The Representation of the People Act, 1951 outlines the legal framework for elections in India and provides for the protection of electoral rights, including the conduct of elections, qualifications for voters, and the prevention of electoral malpractices.</li>
+    </ul>
+
+    <h4>4.2: Voter Registration Process</h4>
+    <p>The process of registration for various purposes (such as voter registration, vehicle registration, company registration, etc.) generally follows a similar procedure. Below is the step-by-step procedure for voter registration in India:</p>
+    <h5>Step-by-Step Procedure for Voter Registration</h5>
+    <ol>
+        <li><strong>Check Eligibility:</strong> Ensure that you meet the basic eligibility criteria for registration. In the case of voter registration in India, you must:
+            <ul>
+                <li>Be a citizen of India.</li>
+                <li>Be 18 years or older on the qualifying date (January 1 of the year in which the voter list is updated).</li>
+                <li>Reside in the constituency where you wish to be registered.</li>
+                <li>Not be disqualified under any election-related laws.</li>
+            </ul>
+        </li>
+        <li><strong>Gather Necessary Documents:</strong> Prepare the necessary documents that are required for registration. These typically include:
+            <ul>
+                <li>Proof of identity (e.g., Aadhaar card, PAN card, passport, driving license).</li>
+                <li>Proof of age (e.g., birth certificate, school certificate).</li>
+                <li>Proof of residence (e.g., electricity bill, rent agreement, bank statement).</li>
+                <li>Passport-sized photographs (if required).</li>
+            </ul>
+        </li>
+        <li><strong>Choose the Mode of Registration:</strong> You can register either online or offline.
+            <ul>
+                <li>For Online Registration: Visit the National Voter Service Portal (NVSP) or the Election Commission of India website.</li>
+                <li>For Offline Registration: Visit the Electoral Registration Office (ERO) or designated centers like booth-level offices or Election Commission offices in your locality.</li>
+            </ul>
+        </li>
+        <li><strong>Fill in the Application Form (Form 6):</strong> Fill out Form 6, whether online or offline. For online registration, enter your personal details and upload the required documents. For offline registration, fill out Form 6 and submit it with the documents.</li>
+        <li><strong>Submit the Application:</strong> After completing the application form, submit it either online or offline and receive acknowledgment or reference number for tracking the application.</li>
+        <li><strong>Verification of Documents:</strong> After submission, the Election Commission will verify the documents and may conduct a home visit for address verification.</li>
+        <li><strong>Inclusion in the Voter List:</strong> After verification, your name will be added to the electoral roll of your constituency.</li>
+        <li><strong>Receive Your Voter ID Card:</strong> Upon successful registration, you will receive your Voter ID Card (EPIC), either by mail or by visiting the Election Commission office.</li>
+        <li><strong>Verification of Voter Registration:</strong> To confirm your registration, check the NVSP website or local polling station records.</li>
+    </ol>
+
+    <h4>4.3: Ethical Electoral Participation</h4>
+    <p>Ethical electoral participation is crucial for ensuring the integrity, fairness, and effectiveness of the democratic process. Here’s why it is significant:</p>
+    <ul>
+        <li><strong>Preservation of Democracy:</strong> Ethical participation helps maintain the integrity of elections, ensuring fair and transparent processes.</li>
+        <li><strong>Promotion of Fairness and Equality:</strong> It ensures equal opportunity and prevents discrimination, fostering a level playing field for all participants.</li>
+        <li><strong>Enhancement of Voter Confidence:</strong> Ethical elections build trust in the system, encouraging higher voter turnout and participation.</li>
+        <li><strong>Prevention of Corruption:</strong> Ethical practices reduce vote-buying, fraud, and other illegal activities, ensuring a cleaner process.</li>
+        <li><strong>Promotion of Accountability and Transparency:</strong> Ethical participation ensures that officials are accountable to voters, enhancing transparency in the election process.</li>
+        <li><strong>Fostering Civic Responsibility:</strong> Encourages active and informed participation, contributing to a more engaged electorate.</li>
+        <li><strong>Strengthening Democratic Institutions:</strong> Ensures robust institutions and adherence to the rule of law.</li>
+        <li><strong>Building Social Cohesion:</strong> Ethical participation respects diversity and promotes inclusivity, reducing conflict.</li>
+        <li><strong>Encouraging Democratic Innovation:</strong> Encourages reform and innovation in democratic practices to keep the system relevant and effective.</li>
+        <li><strong>Setting a Positive Example:</strong> Ethical electoral participation sets a positive example for future generations.</li>
+    </ul>
+    <p><strong>Conclusion:</strong> Ethical electoral participation is essential for ensuring a fair, transparent, and inclusive democratic process, strengthening democracy, preventing corruption, and fostering trust in electoral systems.</p>
+
+</div>
+
+    <button onclick="showUnits()">Back to Units</button>
+    <a href="index.html"><button>Back to Welcome Page</button></a>
+
+</body>
+</html>

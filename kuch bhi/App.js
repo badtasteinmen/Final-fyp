@@ -1,3 +1,4 @@
+
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -10,6 +11,7 @@ import Index from "./components/Index";
 import Theory from "./components/Theory";
 import Unit from "./components/Unit";
 import LoginPage from "./components/LoginPage"; // Import the LoginPage
+import SignIn from "./components/SignIn";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -24,17 +26,29 @@ const TheoryStack = () => {
   );
 };
 
+const SignInStack = () => {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="LoginPage" component={LoginPage} />
+      <Stack.Screen name="SignIn" component={SignIn} />
+    </Stack.Navigator> 
+  );
+};
+
 const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Login">
-        {/* Login Screen as the first screen */}
         <Stack.Screen
           name="Login"
           component={LoginPage}
           options={{ headerShown: false }}
         />
-
+        <Stack.Screen
+          name="SignIn"
+          component={SignIn}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen name="MainApp">
           {() => (
             <Tab.Navigator
@@ -46,17 +60,10 @@ const App = () => {
                 tabBarInactiveTintColor: "gray",
                 tabBarIcon: ({ color, size }) => {
                   let iconName;
-
-                  if (route.name === "Home") {
-                    iconName = "home-outline";
-                  } else if (route.name === "About") {
-                    iconName = "information-circle-outline";
-                  } else if (route.name === "Theory") {
-                    iconName = "book-outline";
-                  } else if (route.name === "Quiz") {
-                    iconName = "help-circle-outline";
-                  }
-
+                  if (route.name === "Home") iconName = "home-outline";
+                  else if (route.name === "About") iconName = "information-circle-outline";
+                  else if (route.name === "Theory") iconName = "book-outline";
+                  else if (route.name === "Quiz") iconName = "help-circle-outline";
                   return <Icon name={iconName} size={size} color={color} />;
                 },
               })}
@@ -71,7 +78,7 @@ const App = () => {
       </Stack.Navigator>
     </NavigationContainer>
   );
-};
+}
 
 const styles = StyleSheet.create({
   screenContainer: {
@@ -87,3 +94,4 @@ const styles = StyleSheet.create({
 });
 
 export default App;
+s

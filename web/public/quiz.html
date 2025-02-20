@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Application</title>
+    <style>
+
+      /* Body Styling */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #079cb3, #feb47b); /* Bright blue to warm sunset gradient */
+    color: #2c3e50; /* Dark slate gray */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* Main Heading */
+h1 {
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-top: 20px;
+    color: #079cb3; /* Bright Blue */
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Unit Cards */
+.unit {
+    width: 90%;
+    max-width: 700px;
+    background: rgba(255, 255, 255, 0.3); /* Frosted white overlay */
+    backdrop-filter: blur(15px);
+    margin: 15px 0;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
+}
+
+.unit:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+}
+
+.unit h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #079cb3; /* Bright Blue */
+}
+
+.unit p {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: #34495e; /* Navy Gray */
+}
+
+/* Unit Buttons */
+.unit button {
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #079cb3, #e74c3c); /* Bright Blue to Red */
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.unit button:hover {
+    background: linear-gradient(135deg, #e74c3c, #079cb3); /* Reverse gradient */
+    transform: scale(1.1);
+}
+
+/* Quiz Container */
+.quiz-container {
+    width: 90%;
+    max-width: 700px;
+    background: rgba(44, 62, 80, 0.9); /* Dark slate blue overlay */
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+    text-align: center;
+    margin: 20px auto;
+}
+
+.quiz-container .question {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #079cb3; /* Bright Blue */
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Options Styling */
+.quiz-container .options button {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #079cb3, #1abc9c); /* Bright Blue to Teal */
+    border: none;
+    border-radius: 8px;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.quiz-container .options button:hover {
+    transform: scale(1.05);
+    background: linear-gradient(135deg, #1abc9c, #079cb3); /* Reverse gradient */
+}
+
+/* Navigation Buttons */
+.quiz-navigation button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #079cb3, #9b59b6); /* Bright Blue to Purple */
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.quiz-navigation button:hover {
+    transform: scale(1.1);
+    background: linear-gradient(135deg, #9b59b6, #079cb3); /* Reverse gradient */
+}
+
+.quiz-navigation button:disabled {
+    background: #555; /* Neutral gray */
+    cursor: not-allowed;
+}
+
+/* Result Styling */
+.result {
+    font-size: 2rem;
+    color: #079cb3; /* Bright Blue */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+/* Links Styling */
+a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 25px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    background: linear-gradient(135deg, #079cb3, #f39c12); /* Bright Blue to Orange */
+    border-radius: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease-in-out;
+}
+
+a:hover {
+    transform: scale(1.1);
+    background: linear-gradient(135deg, #f39c12, #079cb3); /* Reverse gradient */
+}
+
+    </style>
+</head>
+<body>
+    <h1>Quiz Section</h1>
+
+    <div class="unit">
+        <h2>Unit 1</h2>
+        <p>Description: This unit focuses on basic concepts of the Indian Constitution.</p>
+        <button onclick="startQuiz('unit1')">Start Unit 1 Quiz</button>
+    </div>
+
+    <div class="unit">
+        <h2>Unit 2</h2>
+        <p>Description: This unit covers the Preamble and the Basic Structure Doctrine.</p>
+        <button onclick="startQuiz('unit2')">Start Unit 2 Quiz</button>
+    </div>
+
+    <div class="unit">
+        <h2>Unit 3</h2>
+        <p>Description: This unit explores Fundamental Rights and their significance.</p>
+        <button onclick="startQuiz('unit3')">Start Unit 3 Quiz</button>
+    </div>
+
+    <div class="unit">
+        <h2>Unit 4</h2>
+        <p>Description: This unit delves into unique features and amendments of the Constitution.</p>
+        <button onclick="startQuiz('unit4')">Start Unit 4 Quiz</button>
+    </div>
+    <div class="quiz-container" id="quiz-container" style="display: none;"></div>
+    <a href="index.html" class="back-button">Back to Welcome Page</a>
+
+    <script>
+        const units = {
+            unit1: [
+                { question: "What does the phrase 'We, the people of India' signify in the Preamble?", options: ["Social equality", "Popular sovereignty", "Economic justice", "Judicial independence"], answer: 1 },
+                { question: "Which of the following terms in the Preamble indicates India's independence from external control?", options: ["Socialist", "Secular", "Sovereign", "Republic"], answer: 2 },
+                { question: "What does 'Secular' in the Preamble imply?", options: ["The state gives preference to a particular religion", "The state is a monarchy", "The state treats all religions equally", "The state is controlled by a religious body"], answer: 2 },
+                { question: "Which principle in the Preamble guarantees equal rights and opportunities to all citizens?", options: ["Justice", "Liberty", "Equality", "Fraternity"], answer: 2 },
+                { question: "The word 'Republic' in the Preamble signifies:", options: ["Rule by a monarch", "Head of state is elected", "Judicial review", "Separation of powers"], answer: 1 },
+                { question: "In which case was the Doctrine of Basic Structure first established?", options: ["Indira Nehru Gandhi v. Raj Narain", "Kesavananda Bharati v. State of Kerala", "Minerva Mills v. Union of India", "Golaknath v. State of Punjab"], answer: 1 },
+                { question: "Which of the following is NOT a part of the Basic Structure Doctrine?", options: ["Judicial review", "Federalism", "Fundamental Duties", "Supremacy of the Constitution"], answer: 2 },
+                { question: "What does the Basic Structure Doctrine limit?", options: ["The power of the President", "The amendment powers of Parliament", "The role of the Supreme Court", "The financial powers of the state"], answer: 1 },
+                { question: "Which case reaffirmed the Basic Structure Doctrine after Kesavananda Bharati?", options: ["Golaknath v. State of Punjab", "Minerva Mills v. Union of India", "Shankari Prasad v. Union of India", "A.K. Gopalan v. State of Madras"], answer: 1 },
+                { question: "Which part of the Indian Constitution contains the Fundamental Rights?", options: ["Part II", "Part III", "Part IV", "Part V"], answer: 1 },
+                { question: "Which of the following is NOT a Fundamental Right?", options: ["Right to Property", "Right to Freedom of Religion", "Right against Exploitation", "Cultural and Educational Rights"], answer: 0 },
+                { question: "The Directive Principles of State Policy are:", options: ["Justiciable", "Non-justiciable", "Fundamental Rights", "Enforceable in courts"], answer: 1 },
+                { question: "How many articles were there in the original Indian Constitution?", options: ["350", "365", "395", "410"], answer: 2 },
+                { question: "The Indian Constitution follows the concept of Single Citizenship, which means:", options: ["Citizens have rights only in their state", "Only residents of India have rights", "All citizens have the same rights across India", "Dual citizenship is allowed"], answer: 2 },
+                { question: "Which feature makes India a Federal country with a Unitary bias?", options: ["Directive Principles of State Policy", "Parliamentary system of government", "Division of powers between Union and States", "Universal adult suffrage"], answer: 2 },
+                { question: "Which article allows for the declaration of a National Emergency?", options: ["Article 356", "Article 360", "Article 352", "Article 370"], answer: 2 },
+                { question: "The procedure for amending the Indian Constitution is provided in which article?", options: ["Article 368", "Article 356", "Article 370", "Article 343"], answer: 0 },
+                { question: "What does the Indian Constitution provide for under Article 51A?", options: ["Fundamental Rights", "Fundamental Duties", "Universal suffrage", "Judicial review"], answer: 1 },
+                { question: "Which of the following is a unique feature of the Indian Constitution?", options: ["Written Constitution", "Unwritten Constitution", "Based on customary law", "Limited Fundamental Rights"], answer: 0 }
+            ],
+            unit2: [
+            { question: "Which Article of the Indian Constitution guarantees 'Equality before the law and equal protection of the laws'?", options: ["Article 14", "Article 17", "Article 18", "Article 16"], answer: 0 },
+                { question: "Article 17 of the Indian Constitution abolishes which practice?", options: ["Child labor", "Untouchability", "Human trafficking", "Titles"], answer: 1 },
+                { question: "How many fundamental freedoms are protected under Article 19?", options: ["3", "5", "6", "8"], answer: 2 },
+                { question: "What does Article 20 protect against?", options: ["Freedom of religion", "Right to education", "Conviction for offenses", "Discrimination"], answer: 2 },
+                { question: "Article 21A provides free and compulsory education to children of which age group?", options: ["3-10 years", "6-14 years", "10-18 years", "14-21 years"], answer: 1 },
+                { question: "Article 23 prohibits which practice?", options: ["Child labor", "Trafficking and forced labor", "Religious discrimination", "Capital punishment"], answer: 1 },
+                { question: "What does Article 25 protect?", options: ["Right to property", "Freedom of religion", "Freedom of speech", "Right to form unions"], answer: 1 },
+                { question: "Which Article allows minorities to establish educational institutions?", options: ["Article 29", "Article 26", "Article 30", "Article 28"], answer: 2 },
+                { question: "The 'Right to Constitutional Remedies' is enshrined in which Article?", options: ["Article 12", "Article 18", "Article 32", "Article 35"], answer: 2 },
+                { question: "Which of the following is NOT a Fundamental Duty under Article 51A?", options: ["To protect the environment", "To defend the country", "To uphold the Right to Property", "To value and preserve cultural heritage"], answer: 2 },
+                { question: "In which Amendment were the Fundamental Duties added to the Constitution?", options: ["44th Amendment", "42nd Amendment", "73rd Amendment", "86th Amendment"], answer: 1 },
+                { question: "Which Directive Principle directs the state to provide free and compulsory education?", options: ["Article 38", "Article 39", "Article 45", "Article 48"], answer: 2 },
+                { question: "Which case laid down the Basic Structure Doctrine?", options: ["Golak Nath Case", "Kesavananda Bharati Case", "Minerva Mills Case", "State of Gujarat vs. Mirzapur Case"], answer: 1 },
+                { question: "Which case is associated with invalidating part of Article 31C in the 42nd Amendment?", options: ["Kesavananda Bharati Case", "Minerva Mills Case", "State of Gujarat Case", "Golak Nath Case"], answer: 1 },
+                { question: "Which Articles are protected under Article 31C, preventing them from being challenged on grounds of violating Fundamental Rights?", options: ["Articles 39(b) and 39(c)", "Articles 14 and 19", "Articles 25 and 26", "Articles 21 and 32"], answer: 0 }
+            ],
+            unit3: [
+            { question: "Which amendment introduced restrictions on freedom of speech and expression?", options: ["First Amendment", "Twenty-Fourth Amendment", "Forty-Second Amendment", "Eighty-Sixth Amendment"], answer: 0 },
+                { question: "What was the main objective of the Seventh Amendment Act, 1956?", options: ["To reorganize states on a linguistic basis", "To introduce the Anti-Defection Law", "To provide for Fundamental Duties", "To restore civil liberties post-Emergency"], answer: 0 },
+                { question: "Which amendment made education a fundamental right?", options: ["Eighty-Sixth Amendment", "Ninety-First Amendment", "Forty-Fourth Amendment", "Seventy-Third Amendment"], answer: 0 },
+                { question: "The Forty-Second Amendment is often referred to as what?", options: ["The Mini-Constitution", "The Anti-Defection Law", "The Right to Education", "The GST Amendment"], answer: 0 },
+                { question: "Which amendment established the National Judicial Appointments Commission (NJAC)?", options: ["Ninety-Ninth Amendment", "One Hundredth Amendment", "One Hundred and First Amendment", "One Hundred and Fifth Amendment"], answer: 0 },
+                { question: "What did the Twenty-Fifth Amendment Act, 1971, change regarding the right to property?", options: ["Made it a fundamental right", "Removed it as a fundamental right", "Enhanced its protections", "Added it to Directive Principles"], answer: 1 },
+                { question: "Which amendment extended the reservation for Scheduled Castes and Scheduled Tribes in the Lok Sabha and state assemblies for another 10 years?", options: ["One Hundred and Fourth Amendment", "One Hundred and Fifth Amendment", "Eighty-Sixth Amendment", "Seventy-Fourth Amendment"], answer: 0 },
+                { question: "Which of the following amendments is known for introducing the Goods and Services Tax (GST)?", options: ["One Hundred and First Amendment", "One Hundred and Third Amendment", "One Hundred and Fourth Amendment", "One Hundred and Second Amendment"], answer: 0 },
+                { question: "The Seventy-Third Amendment Act, 1992, is significant for giving constitutional status to which institution?", options: ["Municipalities", "Panchayati Raj Institutions", "Lok Sabha", "Rajya Sabha"], answer: 1 },
+                { question: "Which amendment removed the reserved seats for Anglo-Indians in the Lok Sabha and state legislative assemblies?", options: ["One Hundred and Second Amendment", "One Hundred and Fourth Amendment", "One Hundred and Fifth Amendment", "Ninety-First Amendment"], answer: 1 },
+                { question: "Which of the following subjects is included in the Union List?", options: ["Agriculture", "Police", "Defense", "Local Government"], answer: 2 },
+                { question: "Under which Article can Parliament legislate on a State List subject in the national interest?", options: ["Article 256", "Article 249", "Article 253", "Article 356"], answer: 1 },
+                { question: "What is the primary purpose of the Finance Commission?", options: ["To legislate on state subjects", "To recommend how tax revenues should be shared between the Centre and states", "To oversee the functioning of All-India Services", "To manage interstate disputes"], answer: 1 },
+                { question: "Which of the following articles deals with the Inter-State Council?", options: ["Article 256", "Article 263", "Article 280", "Article 292"], answer: 1 },
+                { question: "What is the consequence of a National Emergency declared under Article 352?", options: ["States lose their financial autonomy", "States can legislate freely", "The Centre cannot legislate on State subjects", "States come under the control of the President"], answer: 0 },
+                { question: "Which tax is exclusively levied by the State Governments?", options: ["Income Tax", "Goods and Services Tax", "Sales Tax", "Customs Duty"], answer: 2 },
+                { question: "Which body plays a crucial role in deciding GST rates?", options: ["Planning Commission", "Finance Commission", "GST Council", "Inter-State Council"], answer: 2 },
+                { question: "What is meant by 'Residuary Powers'?", options: ["Powers that belong solely to the States", "Powers not enumerated in any list, which are under Parliament's jurisdiction", "Powers shared between the Centre and States", "Powers granted during an emergency"], answer: 1 },
+                { question: "What triggers the imposition of President's Rule in a state?", options: ["National Emergency", "Financial Emergency", "Failure of constitutional machinery in the state", "A resolution by the Rajya Sabha"], answer: 2 },
+                { question: "Which of the following is an example of cooperative federalism in India?", options: ["All-India Services", "National Emergency", "State Emergency", "Financial Emergency"], answer: 0 }
+            ],
+            unit4: [
+            { question: "Which article of the Indian Constitution guarantees the right to vote?", options: ["Article 324", "Article 326", "Article 14", "Article 19"], answer: 1 },
+                { question: "What is the minimum age required for voting in India?", options: ["16 years", "18 years", "21 years", "25 years"], answer: 1 },
+                { question: "What does 'universal adult suffrage' mean?", options: ["Right to contest elections", "Right to vote for all adults", "Right to free education", "Right to property"], answer: 1 },
+                { question: "Which constitutional body is responsible for conducting elections in India?", options: ["Supreme Court", "Parliament", "Election Commission of India", "Ministry of Home Affairs"], answer: 2 },
+                { question: "Which form is used to register as a voter in India?", options: ["Form 4", "Form 6", "Form 8", "Form 10"], answer: 1 },
+                { question: "What document is issued to registered voters in India?", options: ["Aadhaar Card", "Passport", "Electoral Photo Identity Card (EPIC)", "Ration Card"], answer: 2 },
+                { question: "Who verifies voter registration applications in India?", options: ["Police Department", "District Magistrate", "Electoral Registration Officer (ERO)", "Election Commission Chairman"], answer: 2 },
+                { question: "Which of the following is not part of electoral rights in India?", options: ["Right to Vote", "Right to Contest Elections", "Right to Free Education", "Right to Information"], answer: 2 },
+                { question: "What is the role of the Election Commission of India?", options: ["Appointing judges", "Conducting elections and overseeing voter registration", "Formulating economic policies", "Maintaining law and order"], answer: 1 },
+                { question: "What is the purpose of continuously updating the electoral roll?", options: ["To add new voters and remove ineligible ones", "To increase voter turnout", "To promote political campaigns", "To reduce election expenses"], answer: 0 },
+                { question: "Which of the following is NOT an aspect of ethical electoral participation?", options: ["Fair campaigning", "Respect for electoral laws", "Bribery to gain votes", "Transparency and accountability"], answer: 2 },
+                { question: "What does ethical electoral participation promote?", options: ["Electoral fraud", "Hate speech in campaigns", "Inclusivity and diversity", "Violence for electoral advantage"], answer: 2 },
+                { question: "Why is transparency important in electoral participation?", options: ["To prevent voters from participating", "To ensure trust and accountability in the electoral process", "To favor a particular candidate", "To make elections complicated"], answer: 1 },
+                { question: "Which of the following is considered an electoral malpractice?", options: ["Conducting a peaceful campaign", "Promoting diversity in elections", "Voter intimidation", "Respecting election outcomes"], answer: 2 },
+                { question: "What is the key role of civil society organizations in elections?", options: ["Conducting polls", "Overseeing electoral processes and ensuring fairness", "Promoting biased information", "Supporting a single candidate"], answer: 1 },
+                { question: "What does 'respect for electoral outcomes' mean?", options: ["Accepting the election results only if your candidate wins", "Disregarding the election results if not satisfied", "Accepting the election results, whether your candidate wins or loses", "Contesting the results in all cases"], answer: 2 },
+                { question: "What is required for ethical electoral participation regarding electoral laws?", options: ["Violating laws to gain advantage", "Strict adherence to electoral laws and regulations", "Using loopholes in the law", "Ignoring election codes of conduct"], answer: 1 },
+                { question: "Which principle is upheld by ethical electoral participation?", options: ["Use of state resources for campaign purposes", "Fair and free elections", "Election fraud", "Misleading the public"], answer: 1 },
+                { question: "What role does civic education play in ethical electoral participation?", options: ["Encourages unethical behavior during elections", "Promotes informed and responsible voting decisions", "Discourages voter participation", "Spreads misinformation about candidates"], answer: 1 },
+                { question: "Why is commitment to electoral reform important in ethical participation?", options: ["To prevent election results", "To ensure continuous improvement of the electoral process", "To reduce voter turnout", "To allow manipulation of votes"], answer: 1 }
+            ]
+        };
+
+        let currentUnit = null;
+        let currentQuiz = 0;
+        let score = 0;
+
+        function startQuiz(unit) {
+            currentUnit = unit;
+            currentQuiz = 0;
+            score = 0;
+            document.querySelectorAll('.unit').forEach(unit => unit.style.display = 'none');
+            document.getElementById('quiz-container').style.display = 'block';
+            loadQuiz();
+        }
+
+        function loadQuiz() {
+            if (currentUnit && currentQuiz < units[currentUnit].length) {
+                const quiz = units[currentUnit][currentQuiz];
+                document.getElementById('quiz-container').innerHTML = `
+                    <div class="question">
+                        <strong>${currentUnit.toUpperCase()} - Q${currentQuiz + 1}:</strong> ${quiz.question}
+                    </div>
+                    <div class="options">
+                        ${quiz.options
+                            .map((option, index) => `<button onclick="checkAnswer(${index})">${option}</button>`)
+                            .join('')}
+                    </div>
+                    <div class="quiz-navigation">
+                <button onclick="previousQuestion()" ${currentQuiz === 0 ? 'disabled' : ''}>Previous</button>
+                <button onclick="nextQuestion()" ${currentQuiz === units[currentUnit].length - 1 ? 'disabled' : ''}>Next</button>
+            </div>
+                `;
+            } else {
+                endQuiz();
+            }
+        }
+
+        function checkAnswer(selected) {
+            const quiz = units[currentUnit][currentQuiz];
+            if (quiz.answer === selected) {
+                score++;
+            }
+            currentQuiz++;
+            loadQuiz();
+        }
+
+        function endQuiz() {
+            document.getElementById('quiz-container').innerHTML = `
+                <div class="result">
+                    Quiz Completed!<br>
+                    You scored ${score} out of ${units[currentUnit].length} in ${currentUnit.toUpperCase()}.
+                </div>
+                <a href="javascript:restartQuiz()">Back to Unit Selection</a>
+                 <a href="index.html">Back to Welcome Page</a>
+            `;
+        }
+
+        function previousQuestion() {
+    if (currentQuiz > 0) {
+        currentQuiz--;
+        loadQuiz();
+    }
+}
+
+function nextQuestion() {
+    if (currentQuiz < units[currentUnit].length - 1) {
+        currentQuiz++;
+        loadQuiz();
+    }
+}
+        function restartQuiz() {
+            document.getElementById('quiz-container').style.display = 'none';
+            document.querySelectorAll('.unit').forEach(unit => unit.style.display = 'block');
+        }
+    </script>
+</body>
+</html>

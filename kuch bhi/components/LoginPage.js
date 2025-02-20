@@ -1,5 +1,6 @@
+
 import React, { useState } from "react";
-import { View, Text, TextInput, Button, StyleSheet, Alert } from "react-native";
+import { View, Text, TextInput, Button, StyleSheet, Alert, TouchableOpacity } from "react-native";
 
 const LoginPage = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -37,6 +38,10 @@ const LoginPage = ({ navigation }) => {
       />
 
       <Button title="Login" onPress={handleLogin} />
+      
+      <TouchableOpacity onPress={() => navigation.navigate("SignIn")}>
+        <Text style={styles.signupText}>Don't have an account? Sign Up</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -47,7 +52,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 16,
-    backgroundColor:"pink",
+    backgroundColor: "pink",
   },
   title: {
     fontSize: 24,
@@ -62,7 +67,11 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderColor: "black",
   },
+  signupText: {
+    marginTop: 15,
+    color: "blue",
+    textDecorationLine: "underline",
+  },
 });
 
 export default LoginPage;
-    
