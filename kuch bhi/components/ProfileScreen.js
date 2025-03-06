@@ -15,7 +15,7 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { useAuth } from "../context/AuthContext";
 
-const API_URL = "http://192.168.18.40:3000";
+const API_URL = "http://172.16.246.177:3000";
 
 const profile_picture = require("../assets/profile.png");
 const account = require("../assets/icons/account.png");

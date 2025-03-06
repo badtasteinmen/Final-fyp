@@ -12,7 +12,7 @@ const app = express();
 // MongoDB connection with detailed logging
 console.log("Attempting to connect to MongoDB...");
 mongoose
-  .connect("mongodb://localhost:27017/bhaskar", {
+  .connect("mongodb+srv://shreya:mongo@cluster0.nhcbu.mongodb.net/shreya?retryWrites=true&w=majority&appName=Cluster0", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })

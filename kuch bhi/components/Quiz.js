@@ -11,7 +11,7 @@ import {
   SafeAreaView
 } from "react-native";
 
-const API_URL = "http://192.168.18.40:3000";
+const API_URL = "http://172.16.246.177:3000";
 const backgroundImage = require("../assets/back1.png");
 
 const units = {

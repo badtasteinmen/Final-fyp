@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
 // Update API_URL to match your backend server
-const API_URL = 'http://192.168.18.40:3000';
+const API_URL = 'http://172.16.246.177:3000';
 
 // Configure axios
 axios.defaults.withCredentials = true;

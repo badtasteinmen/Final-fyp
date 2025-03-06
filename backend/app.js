@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // CORS configuration
 app.use(cors({
-  origin: 'http://192.168.18.40:3000',
+  origin: 'http://172.16.246.177:3000',
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
@@ -69,7 +69,7 @@ passport.deserializeUser(async (id, done) => {
 });
 
 // MongoDB connection
-mongoose.connect('mongodb://localhost:27017/your_database', {
+mongoose.connect('mongodb+srv://shreya:mongocluster0.nhcbu.mongodb.net/shreya?retryWrites=true&w=majority&appName=Cluster0', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
