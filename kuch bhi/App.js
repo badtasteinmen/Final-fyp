@@ -11,7 +11,8 @@ import Index from "./components/Index";
 import Theory from "./components/Theory";
 import Unit from "./components/Unit";
 import LoginPage from "./components/LoginPage"; // Import the LoginPage
-import SignIn from "./components/SignIn";
+import SignUpPage from "./components/SignupPage";
+import { AuthProvider } from "./context/AuthContext";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -38,6 +39,7 @@ const SignInStack = () => {
 const App = () => {
   return (
     <NavigationContainer>
+      <AuthProvider>
       <Stack.Navigator initialRouteName="Login">
         <Stack.Screen
           name="Login"
@@ -45,8 +47,8 @@ const App = () => {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="SignIn"
-          component={SignIn}
+          name="SignUp"
+          component={SignUpPage}
           options={{ headerShown: false }}
         />
         <Stack.Screen name="MainApp">
@@ -76,6 +78,7 @@ const App = () => {
           )}
         </Stack.Screen>
       </Stack.Navigator>
+      </AuthProvider>
     </NavigationContainer>
   );
 }
