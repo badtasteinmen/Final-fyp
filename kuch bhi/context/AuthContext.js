@@ -2,8 +2,23 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
-// Set the base URL for the API (replace with your actual API URL)
-const API_URL = 'http://192.168.0.202:3000';
+// Update API_URL to match your backend server
+const API_URL = 'http://192.168.18.40:3000';
+
+// Configure axios
+axios.defaults.withCredentials = true;
+axios.defaults.baseURL = API_URL;
+
+// Add this to see detailed error information
+const handleError = (err) => {
+  console.error('Error details:', {
+    message: err.message,
+    response: err.response?.data,
+    status: err.response?.status,
+    url: err.config?.url
+  });
+  throw err;
+};
 
 const AuthContext = createContext();
 
@@ -13,53 +28,82 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     // Check if user is logged in when the app starts
     const checkAuthStatus = async () => {
       try {
-        const response = await axios.get(`${API_URL}/dashboard`);
-        setUser(response.data); // Store user data in state if logged in
+        const response = await axios.get('/user/dashboard'); // Updated endpoint
+        setUser(response.data.user); // Update to match backend response
       } catch (err) {
-        setUser(null); // Set user to null if not logged in
+        setUser(null);
       }
     };
     
     checkAuthStatus();
   }, []);
 
-  const login = async (username, password) => {
+  const register = async (username, email, password) => {
     try {
-      const response = await axios.post(
-        `${API_URL}/login`,
-        { username, password }
-      );
-      setUser(response.data); // Store user data in state upon successful login
-    } catch (err) {
-      console.error('Login failed:', err);
+      setIsLoading(true);
+      console.log('Sending registration request:', {
+        url: `${API_URL}/user/register`,
+        data: { username, email, password }
+      });
+      
+      const response = await axios.post('/user/register', {
+        username,
+        email,
+        password
+      });
+      
+      console.log('Registration response:', response.data);
+      return { success: true, data: response.data };
+    } catch (error) {
+      console.error('Full registration error:', error);
+      throw error;
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const login = async (email, password) => {
+    try {
+      setIsLoading(true);
+      const response = await axios.post('/user/login', {
+        email,
+        password
+      });
+      
+      setUser(response.data.user);
+      return { success: true };
+    } catch (error) {
+      console.error('Login error:', error.response?.data);
+      throw error;
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const logout = async () => {
     try {
-      await axios.get(`${API_URL}/auth/logout`);
-      setUser(null); // Clear user data on logout
-    } catch (err) {
-      console.error('Logout failed:', err);
-    }
-  };
-
-  const register = async (username, email, password) => {
-    try {
-      await axios.post(`${API_URL}/auth/register`, { username, email, password });
-      // After registration, you can auto-login or redirect to login page
-    } catch (err) {
-      console.error('Registration failed:', err);
+      await axios.get('/user/logout');
+      setUser(null);
+    } catch (error) {
+      console.error('Logout error:', error);
+      throw error;
     }
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, register }}>
+    <AuthContext.Provider value={{ 
+      user, 
+      login, 
+      logout, 
+      register,
+      isLoading 
+    }}>
       {children}
     </AuthContext.Provider>
   );

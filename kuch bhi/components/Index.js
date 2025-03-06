@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255, 255, 255, 0.9)", // Slight transparency for readability
     padding: 20,
     borderRadius: 10,
-    borderWidth: 4,
+    borderWidth: 5,
     borderColor: "#06038D", // Orange (reflecting India's flag)
     marginBottom: 0,
     top: 50,

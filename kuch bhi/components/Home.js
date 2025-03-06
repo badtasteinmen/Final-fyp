@@ -5,6 +5,8 @@ import {
   View,
   StyleSheet,
   ImageBackground,
+  ScrollView,
+  Image,
 } from "react-native";
 
 // Import your image (use a local image or a URL)
@@ -12,23 +14,52 @@ import backgroundImage from "../assets/back.png"; // Local image
 
 const Home = () => {
   return (
-    <ImageBackground source={backgroundImage} style={styles.container}>
-      <Text style={styles.title}>Welcome!!!!!!</Text>
-      <View style={styles.preambleContainer}>
-        <Text style={styles.preambleTitle}>Preamble of India:</Text>
-        <Text style={styles.preambleText}>
-          WE, THE PEOPLE OF INDIA, having solemnly resolved to constitute India
-          into a SOVEREIGN, SOCIALIST, SECULAR, DEMOCRATIC, REPUBLIC and to
-          secure to all its citizens: JUSTICE, social, economic, and political;
-          LIBERTY of thought, expression, belief, faith, and worship; EQUALITY
-          of status and of opportunity; and to promote among them all FRATERNITY
-          assuring the dignity of the individual and the unity and integrity of
-          the Nation; IN OUR CONSTITUENT ASSEMBLY this twenty-sixth day of
-          November, 1949, do HEREBY ADOPT, ENACT AND GIVE TO OURSELVES THIS
-          CONSTITUTION.
-        </Text>
-      </View>
-    </ImageBackground>
+    <ScrollView>
+      <ImageBackground source={backgroundImage} style={styles.container}>
+        <Text style={styles.title}>!!Welcome!!</Text>
+
+        <View style={styles.welcomeSection}>
+          <View style={styles.descriptionContainer}>
+            <Text style={styles.welcomeTitle}>To The Constitution Learning App</Text>
+            <Text style={styles.welcomeDescription}>
+              Explore the fundamental principles and laws that govern our nation. Learn about the constitution in an interactive and engaging way.
+            </Text>
+          </View>
+        </View>
+
+        <View style={styles.featuresContainer}>
+          <View style={styles.featureCard}>
+            <View style={styles.featureIconContainer}>
+              <Text style={styles.featureIcon}>📚</Text>
+            </View>
+            <Text style={styles.featureTitle}>Interactive Lessons</Text>
+            <Text style={styles.featureDescription}>
+              Engage with interactive lessons that make learning about the constitution fun and easy.
+            </Text>
+          </View>
+
+          <View style={styles.featureCard}>
+            <View style={styles.featureIconContainer}>
+              <Text style={styles.featureIcon}>📖</Text>
+            </View>
+            <Text style={styles.featureTitle}>Detailed Articles</Text>
+            <Text style={styles.featureDescription}>
+              Read detailed articles that explain various aspects of the constitution in simple terms.
+            </Text>
+          </View>
+
+          <View style={styles.featureCard}>
+            <View style={styles.featureIconContainer}>
+              <Text style={styles.featureIcon}>✍️</Text>
+            </View>
+            <Text style={styles.featureTitle}>Quizzes and Tests</Text>
+            <Text style={styles.featureDescription}>
+              Test your knowledge with quizzes and tests designed to reinforce your understanding.
+            </Text>
+          </View>
+        </View>
+      </ImageBackground>
+    </ScrollView>
   );
 };
 
@@ -36,76 +67,91 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 50,
-    paddingHorizontal: 15, // Added padding for better layout
-    justifyContent: "center", // Center the content vertically
+    paddingHorizontal: 10,
+    minHeight: '100%',
   },
   title: {
-    fontSize: 28,
-    color: "#06038D", // Darker color for better visibility
-    marginBottom: 150,
-    fontWeight: "bold",
+    fontSize: 50,
+    color: "#06038D",
+    marginBottom: 30,
+    fontWeight: "900",
     textAlign: "center",
-    top: 0,
-    fontFamily: "Indian Typewriter", // Custom Indian font (if available)
-    textShadowColor: "#fff", // Adding a subtle shadow for better readability
-    textShadowOffset: { width: 1, height: 1 },
-    textShadowRadius: 5,
-  },
-  title1: {
-    fontSize: 28,
-    color: "#2c3e50",
-    fontWeight: "bold",
-    textAlign: "center",
-    top: -60,
-    paddingLeft: 10,
-    fontFamily: "Indian Typewriter", // Matching font style with title
+    fontFamily: "Bookman Old Style",
     textShadowColor: "#fff",
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 5,
   },
-  description: {
-    fontSize: 16,
-    color: "#555",
-    marginBottom: 15,
-    textAlign: "center",
-    maxWidth: "80%",
-    lineHeight: 24,
-    fontFamily: "Garamond", // Elegant font for the description
+  welcomeSection: {
+    marginHorizontal: 10,
+    marginBottom: 40,
   },
-  preambleContainer: {
-    backgroundColor: "rgba(255, 255, 255, 0.9)", // Slightly transparent white background
+  welcomeTitle: {
+    fontSize: 26,
+    fontWeight: "bold",
+    color: "#06038D",
+    textAlign: "center",
+    marginBottom: 20,
+    fontFamily: "Bookman Old Style",
+  },
+  descriptionContainer: {
+    backgroundColor: "rgba(255, 255, 255, 0.9)",
     padding: 20,
     borderRadius: 15,
+    borderWidth: 3,
+    borderColor: "#000080",
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
-    alignItems: "center",
-    top: -80,
-    marginRight: 20,
-    marginLeft: 20,
-    borderWidth: 1,
-    borderColor: "#d35400", // A hint of orange to match the flag's theme
   },
-  preambleTitle: {
+  welcomeDescription: {
+    fontSize: 18,
+    color: "#000080",
+    textAlign: "center",
+    lineHeight: 26,
+    fontFamily: "Bookman Old Style",
+  },
+  featuresContainer: {
+    paddingHorizontal: 10,
+    paddingBottom: 30,
+  },
+  featureCard: {
+    backgroundColor: "rgba(255, 255, 255, 0.9)",
+    borderRadius: 15,
+    padding: 20,
+    marginBottom: 20,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+    borderWidth: 3,
+    borderColor: "#000080",
+  },
+  featureIconContainer: {
+    alignItems: "center",
+    marginBottom: 10,
+  },
+  featureIcon: {
+    fontSize: 40,
+  },
+  featureTitle: {
     fontSize: 20,
     fontWeight: "bold",
     color: "#06038D",
+    textAlign: "center",
     marginBottom: 10,
-    textAlign: "center",
     fontFamily: "Indian Typewriter",
-    textShadowColor: "#fff",
-    textShadowOffset: { width: 1, height: 1 },
-    textShadowRadius: 5,
   },
-  preambleText: {
-    fontSize: 14,
-    color: "#06038D",
-    lineHeight: 22,
+  featureDescription: {
+    fontSize: 16,
+    color: "#333",
     textAlign: "center",
-    fontFamily: "Garamond", // Ensuring consistent font family for text
+    lineHeight: 24,
+    fontFamily: "Bookman Old Style",
   },
 });
 
 export default Home;
+

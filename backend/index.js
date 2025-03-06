@@ -9,44 +9,64 @@ const User = require("./models/User");
 
 const app = express();
 
-// 🔹 MongoDB connection
+// MongoDB connection with detailed logging
+console.log("Attempting to connect to MongoDB...");
 mongoose
   .connect("mongodb://localhost:27017/bhaskar", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() => console.log("✅ Connected to MongoDB"))
-  .catch((err) => console.error("❌ Failed to connect to MongoDB", err));
+  .then(() => {
+    console.log("✅ Connected to MongoDB successfully");
+    console.log("Database name:", mongoose.connection.name);
+    console.log("Database host:", mongoose.connection.host);
+    console.log("Database port:", mongoose.connection.port);
+  })
+  .catch((err) => {
+    console.error("❌ Failed to connect to MongoDB");
+    console.error("Error details:", err);
+  });
 
 // 🔹 CORS Configuration
 const corsOptions = {
-  origin: ["http://192.168.0.202:3000", "http://localhost:3000"], // ✅ Support multiple origins
-  credentials: true, // ✅ Allow cookies/sessions
-  methods: "GET,POST,PUT,DELETE",
-  allowedHeaders: "Content-Type,Authorization",
+  origin: true,
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Accept', 'Origin', 'X-Requested-With'],
 };
+
 app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 
 // 🔹 Middleware to parse JSON
 app.use(express.json());
 
-// 🔹 Session Middleware (Before Passport)
+// 🔹 Session Configuration
 app.use(
   session({
     secret: "your-secret-key",
     resave: false,
     saveUninitialized: false,
     cookie: {
-      secure: false, // ✅ Change to true if using HTTPS
+      secure: false,
       httpOnly: true,
-      maxAge: 24 * 60 * 60 * 1000, // ✅ 24 hours
+      maxAge: 24 * 60 * 60 * 1000,
+      sameSite: 'none'
     },
   })
 );
 
-// 🔹 Passport Middleware (After Session)
+// 🔹 Passport Middleware
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Add session check middleware
+app.use((req, res, next) => {
+  console.log('Session:', req.session);
+  console.log('User:', req.user);
+  console.log('Is Authenticated:', req.isAuthenticated());
+  next();
+});
 
 // 🔹 Passport Local Strategy (Using Email)
 passport.use(
@@ -89,13 +109,17 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
-// 🔹 Authentication Routes
-app.use("/auth", require("./routes/user"));
+// 🔹 Routes
+app.use("/user", require("./routes/user"));
+app.use("/scores", require("./routes/scores")); // Add scores routes
 
 // 🔹 Test Route
 app.get("/", (req, res) => {
   res.send("✅ Server is running");
 });
 
-// 🔹 Start Server
-app.listen(3000, () => console.log("🚀 Listening on port 3000"));
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});

@@ -1,25 +1,10 @@
 const express = require("express");
 const passport = require("passport");
 const bcrypt = require("bcryptjs");
-const session = require("express-session");
 const LocalStrategy = require("passport-local").Strategy;
 const User = require("../models/User"); // Assuming your User model is at this path
 
 const router = express.Router();
-
-// 🔹 Middleware: Express Session (Required for Passport.js)
-router.use(
-  session({
-    secret: "your-secret-key", // Change this to a secure secret key
-    resave: false,
-    saveUninitialized: false,
-    cookie: { secure: false, httpOnly: true, maxAge: 24 * 60 * 60 * 1000 },
-  })
-);
-
-// 🔹 Initialize Passport.js and use sessions
-router.use(passport.initialize());
-router.use(passport.session());
 
 // 🔹 Passport Local Strategy (Using Email Instead of Username)
 passport.use(
@@ -55,50 +40,80 @@ passport.deserializeUser(async (id, done) => {
 
 // 🔹 Register Route
 router.post("/register", async (req, res) => {
-  const { username, password, email } = req.body;
   try {
+    const { username, email, password } = req.body;
+    
+    // Check if user already exists
     const existingUser = await User.findOne({ email });
-    if (existingUser) return res.status(400).json({ message: "Email already exists." });
+    if (existingUser) {
+      return res.status(400).json({ message: 'User already exists' });
+    }
 
+    // Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = new User({ username, email, password: hashedPassword });
 
-    await newUser.save();
-    res.status(201).json({ message: "User registered successfully." });
-  } catch (err) {
-    res.status(500).json({ message: "Error registering user." });
+    // Create new user
+    const user = new User({
+      username,
+      email,
+      password: hashedPassword
+    });
+
+    await user.save();
+    res.status(201).json({ message: 'User registered successfully' });
+  } catch (error) {
+    console.error('Registration error:', error);
+    res.status(500).json({ message: 'Error registering user' });
   }
 });
 
 // 🔹 Login Route
 router.post("/login", (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {
-    if (err) return res.status(500).json({ message: "Authentication error.", error: err.message });
-    if (!user) return res.status(401).json({ message: info?.message || "Invalid credentials." });
-
+    if (err) {
+      return res.status(500).json({ message: 'Login error' });
+    }
+    if (!user) {
+      return res.status(401).json({ message: info.message || 'Invalid credentials' });
+    }
     req.logIn(user, (err) => {
-      if (err) return res.status(500).json({ message: "Error logging in.", error: err.message });
-
-      return res.status(200).json({ message: "Logged in successfully", user });
+      if (err) {
+        return res.status(500).json({ message: 'Login error' });
+      }
+      return res.json({
+        message: 'Login successful',
+        user: {
+          id: user._id,
+          username: user.username,
+          email: user.email
+        }
+      });
     });
   })(req, res, next);
 });
 
 // 🔹 Logout Route
-router.get("/logout", (req, res, next) => {
+router.get("/logout", (req, res) => {
   req.logout((err) => {
-    if (err) return next(err);
-    res.status(200).json({ message: "Logged out successfully." });
+    if (err) {
+      return res.status(500).json({ message: 'Logout error' });
+    }
+    res.json({ message: 'Logged out successfully' });
   });
 });
 
-// 🔹 Dashboard Route (Authenticated)
+// 🔹 Dashboard Route (Protected)
 router.get("/dashboard", (req, res) => {
-  if (req.isAuthenticated()) {
-    res.json({ message: `Welcome, ${req.user.username}` });
-  } else {
-    res.status(401).json({ message: "Unauthorized. Please log in." });
+  if (!req.isAuthenticated()) {
+    return res.status(401).json({ message: 'Not authenticated' });
   }
+  res.json({
+    user: {
+      id: req.user._id,
+      username: req.user.username,
+      email: req.user.email
+    }
+  });
 });
 
 module.exports = router;

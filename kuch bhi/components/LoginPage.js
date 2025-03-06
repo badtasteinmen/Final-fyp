@@ -1,30 +1,34 @@
-  import React, { useState } from "react";
-  import { View, Text, TextInput, Button, StyleSheet, Alert, TouchableOpacity } from "react-native";
-  import { useAuth } from "../context/AuthContext"; // Import the context
+import React, { useState } from "react";
+import { View, Text, TextInput, Button, StyleSheet, Alert, TouchableOpacity, ImageBackground } from "react-native";
+import { useAuth } from "../context/AuthContext"; // Import the context
 
-  const LoginPage = ({ navigation }) => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const { login, isLoading } = useAuth(); // Access login function and isLoading from context
+const backgroundImage = require("../assets/back1.png");
 
-    const handleLogin = async () => {
-      if (!email || !password) {
-        Alert.alert("Error", "Please fill in both fields");
-        return;
+const LoginPage = ({ navigation }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { login, isLoading } = useAuth(); // Access login function and isLoading from context
+
+  const handleLogin = async () => {
+    if (!email || !password) {
+      Alert.alert("Error", "Please fill in both fields");
+      return;
+    }
+
+    try {
+      const result = await login(email, password);
+      if (result.success) {
+        navigation.replace("MainApp");
       }
+    } catch (error) {
+      Alert.alert("Error", error.response?.data?.message || "Login failed");
+    }
+  };
 
-      const success = await login(email, password);
-
-      if (success) {
-        Alert.alert( "Login successful!");
-        navigation.replace("MainApp"); // Navigate to the main app screen
-      } else {
-        Alert.alert( "Invalid credentials. Please try again.");
-      }
-    };
-
-    return (
+  return (
+    <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
       <View style={styles.container}>
+        <Text style={styles.heading}>Essence of Constitution</Text>
         <Text style={styles.title}>Login</Text>
 
         <TextInput
@@ -46,41 +50,60 @@
         <Button title={isLoading ? "Logging in..." : "Login"} onPress={handleLogin} disabled={isLoading} />
 
         <TouchableOpacity onPress={() => navigation.navigate("SignUp")} style={styles.signUpLink}>
-        <Text style={styles.signUpText}>Don't have an account? Sign Up</Text>
-      </TouchableOpacity>
+          <Text style={styles.signUpText}>Don't have an account? Sign Up</Text>
+        </TouchableOpacity>
       </View>
-    );
-  };
+    </ImageBackground>
+  );
+};
 
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: "center",
-      alignItems: "center",
-      padding: 16,
-      backgroundColor: "pink",
-    },
-    title: {
-      fontSize: 24,
-      fontWeight: "bold",
-      marginBottom: 20,
-    },
-    input: {
-      width: "100%",
-      padding: 10,
-      marginBottom: 15,
-      borderWidth: 1,
-      borderRadius: 5,
-      borderColor: "black",
-    },
-    signUpLink: {
-      marginTop: 20,
-    },
-    signUpText: {
-      fontSize: 16,
-      color: "blue",
-      textDecorationLine: "underline",
-    },
-  });
+const styles = StyleSheet.create({
+  backgroundImage: {
+    flex: 1,
+    width: '100%',
+    height: '100%'
+  },
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 16,
+  },
+  heading: {
+    fontSize: 40,
+    fontWeight: 'bold',
+    color: '#000080',
+    textAlign: 'center',
+    marginBottom: 30,
+    textTransform: 'uppercase',
+    letterSpacing: 3,
+    textShadowColor: 'rgba(0, 0, 0, 0.2)',
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 5
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 20,
+    color: '#000080',
+  },
+  input: {
+    width: "100%",
+    padding: 10,
+    marginBottom: 15,
+    borderWidth: 1,
+    borderRadius: 5,
+    borderColor: "#000080",
+    backgroundColor: 'white',
+  },
+  signUpLink: {
+    marginTop: 20,
+  },
+  signUpText: {
+    fontSize: 16,
+    color: "#000080",
+    textDecorationLine: "underline",
+  },
+});
 
-  export default LoginPage;
+export default LoginPage;
